@@ -4,10 +4,7 @@ services:
     container_name: sarada-cctv
     restart: unless-stopped
     ports:
-      # Default: only accessible on Ubuntu host, e.g. through an SSH tunnel.
-      # Later: replace with a deliberately private LAN/Tailscale binding or
-      # authenticated reverse proxy after reviewing network exposure.
-      - "127.0.0.1:8098:80"
+      - "192.168.31.122:8098:80"
     networks:
       - cctv_internal
 
