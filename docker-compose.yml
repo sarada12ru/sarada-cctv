@@ -4,9 +4,7 @@ services:
     container_name: sarada-cctv
     restart: unless-stopped
     ports:
-      # Bind to private interfaces ONLY. Never publish on 0.0.0.0.
-      - "${LAN_IP:-192.168.1.8}:${CCTV_PORT:-8188}:80"
-      - "${TAILSCALE_IP:-100.98.140.29}:${CCTV_PORT:-8188}:80"
+      - "192.168.31.122:8098:80"
     volumes:
       - ./.secrets/htpasswd:/etc/nginx/auth/htpasswd:ro
     networks:
