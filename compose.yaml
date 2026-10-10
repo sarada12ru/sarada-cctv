@@ -1,13 +1,21 @@
 services:
-  cctv:
-    build: .
-    container_name: sarada-cctv
+  go2rtc:
+    image: alexxit/go2rtc:latest
+    container_name: daichi-go2rtc
     restart: unless-stopped
+    volumes:
+      - ./go2rtc.yaml:/config/go2rtc.yaml:ro
     ports:
-      - "192.168.31.122:8098:80"
+      - "127.0.0.1:1984:1984/tcp"
+      - "192.168.31.122:8554:8554/tcp"
+      - "192.168.31.122:8555:8555/tcp"
+      - "192.168.31.122:8555:8555/udp"
     networks:
+      - default
       - cctv_internal
 
 networks:
+  default:
   cctv_internal:
     external: true
+    name: cctv_internal
